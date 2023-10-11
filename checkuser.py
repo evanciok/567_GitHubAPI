@@ -49,5 +49,3 @@ def main():
     print("input a github username to view all repositories and commit history")
     username = input()
     print(username + "'s github info:", getInfo(username))
-
-main()
