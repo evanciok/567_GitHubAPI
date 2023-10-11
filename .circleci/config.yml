@@ -11,7 +11,8 @@ jobs:
       - checkout
       - run:
           command: |
-            python -m unittest test_checkuser
+            pip install pytest
+            pytest --junitxml=test-results/junit.xml test_checkuser.py
       - store_test_results:
           path: test-results\
 
