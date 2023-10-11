@@ -16,7 +16,7 @@ class test_checkuser(unittest.TestCase):
         self.assertEqual(getInfo("evancoik"),'request error 404')
 
     def testValidUser(self): 
-        self.assertEqual(getInfo("evanciok"), ['567_GitHubAPI has 19 commits', 'cs555tm012023fall has 11 commits', 'Singleton-Visitor has 3 commits', 'SSW-567 has 3 commits', 'SSW567HW02 has 12 commits'])
+        self.assertEqual(getInfo("evanciok"), ['567_GitHubAPI has 21 commits', 'cs555tm012023fall has 11 commits', 'Singleton-Visitor has 3 commits', 'SSW-567 has 3 commits', 'SSW567HW02 has 12 commits'])
 
     def testInvalidRepo(self): 
         self.assertEqual(getCommit("evanciok", "repo1"),'request error 404')
