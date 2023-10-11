@@ -20,27 +20,34 @@ def getInfo(username):
         api = "https://api.github.com/users/" + username + "/repos"
         response = requests.get(f"{api}")
         if response.status_code == 200:
+            repoList = []
+            commitList = []
             for repo in response.json():
-                print("user " + username + " has repo: " + repo['name'])
-                getCommit(username, repo['name'])
+                repoList.append(repo['name'])
+                commitList.append(getCommit(username, repo['name']))
+            outputList = []
+            element = 0
+            for repo in repoList:
+                 outputList.append(repo + " has " + str(commitList[element]) + " commits")
+                 element+=1
+            return outputList
         else:
-            print(f"request error {response.status_code}")
+            return "request error " + str(response.status_code)
 
-def getCommit(username, reponame):
-        api = "https://api.github.com/repos/" + username + "/" + reponame + "/commits"
+def getCommit(username, repo):
+        api = "https://api.github.com/repos/" + username + "/" + repo + "/commits"
         response = requests.get(f"{api}")
         if response.status_code == 200:
             commitCount = 0
             for commit in response.json():
                  commitCount+=1
-            print("repo " + reponame + " has " + str(commitCount) + " commits")
-                
+            return commitCount
         else:
-            print(f"request error {response.status_code}")    
-
+            return "request error " + str(response.status_code)
+        
 def main():
     print("input a github username to view all repositories and commit history")
     username = input()
-    getInfo(username)
+    print(username + "'s github info:", getInfo(username))
 
 main()
