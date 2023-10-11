@@ -16,14 +16,13 @@ my_brand(assignment_name)
 import requests
 import json
 
-def getRepo(username):
+def getInfo(username):
         api = "https://api.github.com/users/" + username + "/repos"
         response = requests.get(f"{api}")
         if response.status_code == 200:
-            repoList = []
             for repo in response.json():
-                repoList.append(repo['name'])
-            print("user " + username + " has repos: " + str(repoList))
+                print("user " + username + " has repo: " + repo['name'])
+                getCommit(username, repo['name'])
         else:
             print(f"request error {response.status_code}")
 
@@ -40,11 +39,8 @@ def getCommit(username, reponame):
             print(f"request error {response.status_code}")    
 
 def main():
-    print("input a github username to view all repositories")
+    print("input a github username to view all repositories and commit history")
     username = input()
-    getRepo(username)
-    print("input a repository name to view number of commits")
-    reponame = input()
-    getCommit(username, reponame)
+    getInfo(username)
 
 main()
