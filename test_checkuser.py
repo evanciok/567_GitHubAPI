@@ -9,6 +9,8 @@ def my_brand(assignment):
 assignment_name = "HW04A - Develop With The Perspective Of The Tester In Mind"
 
 import unittest
+import requests
+import json
 from checkuser import*
 
 class test_checkuser(unittest.TestCase):
